@@ -21,12 +21,16 @@ if(is_file(BASE.DS."..".DS."wampmanager.conf")){
     $wampManagerConfigs = parse_ini_file(BASE.DS."..".DS."wampmanager.conf", true);
 }
 
+require_once INCS . DS . "functions.php";
+
+$directories = loadJsonConfigs(WR.DS."configs".DS."directories.json");
+
 $configs = [
     "wampConfigs"=>$wampManagerConfigs,
     "viewsDir"=>INCS.DS."Views",
     "defaultPageName"=>"home",
     "allowedPages"=>[
-        "home", "phpinfo", "404"
+        "home", "phpinfo", "404","info"
     ],
     "pages"=>[
         "home"=>[
@@ -38,13 +42,19 @@ $configs = [
         "phpinfo" => [
             "title"=>"PHP info",
         ],
+        "info" => [
+            "title" => "Projets",
+        ]
     ],
-    "projectsDirs"=>[
-        "C:\\wamp\\www",
-    ],
+    "projectsDir"=> $directories["default"],
+    "projectsDirInfos" => $directories["dirs"][$directories["default"]],
+    "directories"=>$directories,
+
 ];
 
-require_once INCS . DS . "functions.php";
+
+
+
 
 $request = \Core\Request::create();
 

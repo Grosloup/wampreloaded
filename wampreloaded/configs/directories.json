@@ -1,3 +1,18 @@
 {
-
+    "dirs": {
+        "localhost" : {
+            "fullPath" : "C:\\wamp\\www",
+            "blackList": [
+                "wampreloaded"
+            ]
+        },
+        "projects.files.explorer" : {
+            "fullPath" : "C:\\wamp\\projects\\files\\explorer",
+            "blackList": []
+        }
+    },
+    "default" : "localhost",
+    "commonBlackList" : [
+        ".idea", ".sass-cache", ".git"
+    ]
 }
