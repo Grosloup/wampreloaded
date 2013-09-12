@@ -58,6 +58,10 @@ $configs = [
 
 $request = \Core\Request::create();
 
+if($request->get("page") == "info" && $request->get("project") != null){
+    $configs["projectsDir"] = $request->get("project");
+}
+
 
 _getView();
 ?>
