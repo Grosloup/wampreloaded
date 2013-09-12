@@ -57,3 +57,57 @@ function saveJsonConfigs($configs = [], $path = "")
 
     return $result;
 }
+
+function getPageName()
+{
+    global $configs;
+    global $request;
+    return ($request->get("page")) ? $request->get("page") : $configs["defaultPageName"];
+}
+
+function getPageTitle($pageName = "")
+{
+    global $configs;
+    if (!$pageName) {
+        $pageName = getPageName();
+    }
+    if (isset($configs["pages"][$pageName]["title"])) {
+        return $configs["pages"][$pageName]["title"];
+    }
+    return $pageName;
+}
+
+function _getPageTitle($pageName = "")
+{
+    echo getPageTitle($pageName);
+}
+
+function getHeader($pageName = "")
+{
+    global $configs;
+    global $request;
+
+    if (!$pageName) {
+        $pageName = getPageName();
+    }
+}
+
+function getFooter($pageName = "")
+{
+    global $configs;
+    global $request;
+
+    if (!$pageName) {
+        $pageName = getPageName();
+    }
+}
+
+function _getFooter($pageName = "")
+{
+    echo getFooter($pageName);
+}
+
+function _getHeader($pageName = "")
+{
+    echo getPageName($pageName);
+}
