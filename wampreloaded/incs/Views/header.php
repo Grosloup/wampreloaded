@@ -11,10 +11,10 @@
 <head>
     <meta charset="UTF-8">
     <title><?php _getPageTitle(); ?> | WampServer</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/master.css"/>
+    <link rel="stylesheet" href="/wampreloaded/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/wampreloaded/css/master.css"/>
 
-    <script type="text/javascript" src="/js/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/vendor/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/wampreloaded/js/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/wampreloaded/js/vendor/bootstrap/bootstrap.min.js"></script>
 </head>
 <body>

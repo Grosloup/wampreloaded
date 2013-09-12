@@ -62,7 +62,11 @@ function getPageName()
 {
     global $configs;
     global $request;
-    return ($request->get("page")) ? $request->get("page") : $configs["defaultPageName"];
+    $page = ($request->get("page")) ? $request->get("page") : $configs["defaultPageName"];
+    if(!in_array($page, $configs["allowedPages"])){
+        $page = "404";
+    }
+    return $page;
 }
 
 function getPageTitle($pageName = "")
@@ -82,7 +86,7 @@ function _getPageTitle($pageName = "")
     echo getPageTitle($pageName);
 }
 
-function getHeader($pageName = "")
+function getView($pageName = "")
 {
     global $configs;
     global $request;
@@ -90,20 +94,64 @@ function getHeader($pageName = "")
     if (!$pageName) {
         $pageName = getPageName();
     }
+
+    $view = $configs["viewsDir"] . DS . $pageName . DS . "main.php";
+    if(!is_file($view)){
+        $request->set("page", "404");
+        $view = $configs["viewsDir"] . DS . "404.php";
+    }
+
+    ob_start();
+    require_once $view;
+    $content = ob_get_clean();
+    return $content;
+}
+
+function _getView($pageName = "")
+{
+    echo getView($pageName);
+}
+
+function getHeader($pageName = "")
+{
+    global $configs;
+
+    if (!$pageName) {
+        $pageName = getPageName();
+    }
+
+    $view = $configs["viewsDir"] . DS . $pageName . DS . "header.php";
+    if(!is_file($view)){
+        $view = $configs["viewsDir"] . DS . "header.php";
+    }
+
+    ob_start();
+
+    require_once $view;
+    return ob_get_clean();
 }
 
 function getFooter($pageName = "")
 {
     global $configs;
-    global $request;
 
     if (!$pageName) {
         $pageName = getPageName();
     }
+
+    $view = $configs["viewsDir"] . DS . $pageName . DS . "footer.php";
+    if(!is_file($view)){
+        $view = $configs["viewsDir"] . DS . "footer.php";
+    }
+
+    ob_start();
+    require_once $view;
+    return ob_get_clean();
 }
 
 function _getFooter($pageName = "")
 {
+
     echo getFooter($pageName);
 }
 
