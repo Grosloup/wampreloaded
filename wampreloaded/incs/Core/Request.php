@@ -81,6 +81,9 @@ class Request
         if (array_key_exists($key, $this->post)) {
             return $this->post[$key];
         }
+        if (array_key_exists($key, $this->request)) {
+            return $this->request[$key];
+        }
         if (array_key_exists($key, $this->session)) {
             return $this->session[$key];
         }
