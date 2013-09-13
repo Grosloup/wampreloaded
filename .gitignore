@@ -8,5 +8,3 @@ config.rb
 /wampreloaded/js/vendor/
 /wampreloaded/fonts/
 /wampreloaded/img/
-.bowerrc
-bower.json
